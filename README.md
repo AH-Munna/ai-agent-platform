@@ -1,29 +1,71 @@
-# Create T3 App
+# AI Roleplay Platform
 
-This is a [T3 Stack](https://create.t3.gg/) project bootstrapped with `create-t3-app`.
+A "SillyTavern-style" roleplay chat application built with the **T3 Stack** (Next.js, tRPC, Prisma, Tailwind) and **Vercel AI SDK**.
 
-## What's next? How do I make an app with this?
+This platform provides a rich, immersive environment for users to interact with AI characters using custom personas, dynamic scenarios, and advanced roleplay features.
 
-We try to keep this project as simple as possible, so you can start with just the scaffolding we set up for you, and add additional things later when they become necessary.
+## 🚀 Key Features
 
-If you are not familiar with the different technologies used in this project, please refer to the respective docs. If you still are in the wind, please join our [Discord](https://t3.gg/discord) and ask for help.
+### 🎭 Identity & Persona Management
+-   **User Personas**: Create multiple personas for yourself (e.g., "The Detective", "The Space Marine") to use in different roleplays.
+-   **Character Management**: Create detailed AI characters with:
+    -   **Avatars**: Visual representation for immersion.
+    -   **Bio/Backstory**: Deep context for the AI to embody.
+    -   **Greetings**: Unique starting messages to kick off the scene.
 
-- [Next.js](https://nextjs.org)
-- [NextAuth.js](https://next-auth.js.org)
-- [Prisma](https://prisma.io)
-- [Drizzle](https://orm.drizzle.team)
-- [Tailwind CSS](https://tailwindcss.com)
-- [tRPC](https://trpc.io)
+### 💬 Advanced Chat Interface
+-   **Immersive UI**: Split view with chat history on the left and controls/personas on the right.
+-   **Edit & Delete**: Full control over the narrative. Edit any message (User or AI) or delete mistakes to steer the story.
+-   **Rich Styling**:
+    -   *italics* are gray for actions/thoughts.
+    -   "Quotes" are orange for dialogue.
+    -   Markdown support for complex formatting.
+-   **Dynamic Context**: The system automatically injects:
+    1.  Global Instructions (Main Prompt)
+    2.  User Persona Context
+    3.  Character Persona Context
+    4.  Scenario Details
+    5.  Chat History
 
-## Learn More
+### ⚙️ Global Control
+-   **Model Selection**: Switch between different LLMs (via NVIDIA NIM or OpenAI compatible APIs).
+-   **System Prompts**: Define global rules that apply to all characters (e.g., "Always write in third person").
+-   **API Key Management**: Securely manage your AI provider keys.
 
-To learn more about the [T3 Stack](https://create.t3.gg/), take a look at the following resources:
+## 🛠️ Tech Stack
 
-- [Documentation](https://create.t3.gg/)
-- [Learn the T3 Stack](https://create.t3.gg/en/faq#what-learning-resources-are-currently-available) — Check out these awesome tutorials
+-   **Framework**: [Next.js 14](https://nextjs.org/) (App Router)
+-   **Language**: TypeScript
+-   **Styling**: Tailwind CSS + [shadcn/ui](https://ui.shadcn.com/)
+-   **Database**: PostgreSQL (Neon) with Prisma ORM
+-   **API**: tRPC (End-to-end typesafe APIs)
+-   **Auth**: NextAuth.js (v5 Beta)
+-   **AI**: Vercel AI SDK + NVIDIA NIM (DeepSeek, Llama 3) / OpenAI
 
-You can check out the [create-t3-app GitHub repository](https://github.com/t3-oss/create-t3-app) — your feedback and contributions are welcome!
+## 🔮 Future Plans
 
-## How do I deploy this?
+-   **Lorebooks / World Info**: Selective context injection based on keywords.
+-   **Group Chats**: Roleplay with multiple AI characters simultaneously.
+-   **Voice Mode**: TTS (Text-to-Speech) and STT (Speech-to-Text) integration.
+-   **Image Generation**: Generate character avatars and scene backgrounds on the fly.
+-   **Public Sharing**: Share scenarios and characters with the community.
 
-Follow our deployment guides for [Vercel](https://create.t3.gg/en/deployment/vercel), [Netlify](https://create.t3.gg/en/deployment/netlify) and [Docker](https://create.t3.gg/en/deployment/docker) for more information.
+## 📦 Getting Started
+
+1.  **Clone the repo**:
+    ```bash
+    git clone https://github.com/AH-Munna/ai-agent-platform.git
+    ```
+2.  **Install dependencies**:
+    ```bash
+    npm install
+    ```
+3.  **Set up environment**:
+    Copy `.env.example` to `.env` and fill in your DB URL and Auth Secret.
+4.  **Run the dev server**:
+    ```bash
+    npm run dev
+    ```
+
+---
+*Built with ❤️ by AH Munna*
