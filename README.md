@@ -1,6 +1,6 @@
 # AI Roleplay Platform
 
-A "SillyTavern-style" roleplay chat application built with the **T3 Stack** (Next.js, tRPC, Prisma, Tailwind) and **Vercel AI SDK**.
+An AI chat application built with the **T3 Stack** (Next.js, tRPC, Prisma, Tailwind) and **Vercel AI SDK**.
 
 This platform provides a rich, immersive environment for users to interact with AI characters using custom personas, dynamic scenarios, and advanced roleplay features.
 
@@ -50,22 +50,5 @@ This platform provides a rich, immersive environment for users to interact with 
 -   **Image Generation**: Generate character avatars and scene backgrounds on the fly.
 -   **Public Sharing**: Share scenarios and characters with the community.
 
-## 📦 Getting Started
 
-1.  **Clone the repo**:
-    ```bash
-    git clone https://github.com/AH-Munna/ai-agent-platform.git
-    ```
-2.  **Install dependencies**:
-    ```bash
-    npm install
-    ```
-3.  **Set up environment**:
-    Copy `.env.example` to `.env` and fill in your DB URL and Auth Secret.
-4.  **Run the dev server**:
-    ```bash
-    npm run dev
-    ```
-
----
 *Built with ❤️ by AH Munna*
