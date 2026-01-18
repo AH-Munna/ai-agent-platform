@@ -34,7 +34,7 @@ This platform provides a rich, immersive environment for users to interact with 
 
 ## 🛠️ Tech Stack
 
--   **Framework**: [Next.js 14](https://nextjs.org/) (App Router)
+-   **Framework**: [Next.js 16](https://nextjs.org/) (App Router)
 -   **Language**: TypeScript
 -   **Styling**: Tailwind CSS + [shadcn/ui](https://ui.shadcn.com/)
 -   **Database**: PostgreSQL (Neon) with Prisma ORM
