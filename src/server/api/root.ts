@@ -1,6 +1,9 @@
-import { identityRouter } from "~/server/api/routers/identity";
-import { postRouter } from "~/server/api/routers/post";
-import { roomRouter } from "~/server/api/routers/room";
+import { authRouter } from "~/server/api/routers/auth";
+import { characterRouter } from "~/server/api/routers/character";
+import { messageRouter } from "~/server/api/routers/message";
+import { personaRouter } from "~/server/api/routers/persona";
+import { sessionRouter } from "~/server/api/routers/session";
+import { userRouter } from "~/server/api/routers/user";
 import { createCallerFactory, createTRPCRouter } from "~/server/api/trpc";
 
 /**
@@ -9,9 +12,12 @@ import { createCallerFactory, createTRPCRouter } from "~/server/api/trpc";
  * All routers added in /api/routers should be manually added here.
  */
 export const appRouter = createTRPCRouter({
-  post: postRouter,
-  identity: identityRouter,
-  room: roomRouter,
+  character: characterRouter,
+  session: sessionRouter,
+  auth: authRouter,
+  persona: personaRouter,
+  user: userRouter,
+  message: messageRouter,
 });
 
 // export type definition of API

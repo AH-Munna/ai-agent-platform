@@ -11,53 +11,83 @@ datasource db {
     directUrl = env("DIRECT_URL")
 }
 
-model Identity {
-    id            String   @id @default(uuid())
-    name          String
-    avatar        String?
-    bio           String   @db.Text
-    modelProvider String   @default("openai")
-    createdAt     DateTime @default(now())
-    updatedAt     DateTime @updatedAt
-
-    roomParticipants RoomParticipant[]
-    messages         Message[]
-}
-
-model Room {
-    id        String   @id @default(uuid())
-    name      String
-    scenario  String   @db.Text
-    isPublic  Boolean  @default(false)
+model User {
+    id        String   @id @default(cuid())
+    username  String   @unique
+    password  String // Hashed
     createdAt DateTime @default(now())
     updatedAt DateTime @updatedAt
 
-    participants RoomParticipant[]
-    messages     Message[]
+    // Settings
+    globalSettings Json? // Stores { mainPrompt: string, model: string, apiKey: string, baseUrl: string }
+
+    personas   UserPersona[]
+    characters Character[] // Characters created by this user
+    sessions   ChatSession[]
 }
 
-model RoomParticipant {
-    id         String   @id @default(uuid())
-    roomId     String
-    identityId String
-    joinedAt   DateTime @default(now())
+model UserPersona {
+    id        String   @id @default(cuid())
+    userId    String
+    name      String
+    avatar    String?
+    bio       String   @db.Text
+    createdAt DateTime @default(now())
+    updatedAt DateTime @updatedAt
 
-    room     Room     @relation(fields: [roomId], references: [id], onDelete: Cascade)
-    identity Identity @relation(fields: [identityId], references: [id], onDelete: Cascade)
+    user         User          @relation(fields: [userId], references: [id], onDelete: Cascade)
+    messages     Message[]
+    chatSessions ChatSession[]
+}
 
-    @@unique([roomId, identityId])
+model Character {
+    id        String   @id @default(cuid())
+    userId    String? // Optional: System characters vs User characters
+    name      String
+    avatar    String?
+    bio       String   @db.Text
+    greeting  String?  @db.Text // First message sent by character
+    createdAt DateTime @default(now())
+    updatedAt DateTime @updatedAt
+
+    user     User?         @relation(fields: [userId], references: [id], onDelete: Cascade)
+    messages Message[]
+    sessions ChatSession[] // Sessions this character is in (Many-to-Many via implicit or explicit?)
+    // Simpler: A session usually has ONE primary character in SillyTavern style, 
+    // but we might want multi-character. Let's keep it Many-to-Many.
+}
+
+model ChatSession {
+    id       String  @id @default(cuid())
+    userId   String
+    name     String // E.g. "Chat with Alice"
+    scenario String? @db.Text // Specific scenario for this chat
+
+    createdAt DateTime @default(now())
+    updatedAt DateTime @updatedAt
+
+    user         User        @relation(fields: [userId], references: [id], onDelete: Cascade)
+    participants Character[] // Implicit many-to-many
+    messages     Message[]
+
+    // The persona the user is using in this session
+    userPersonaId String?
+    userPersona   UserPersona? @relation(fields: [userPersonaId], references: [id])
 }
 
 model Message {
-    id      String @id @default(uuid())
+    id      String @id @default(cuid())
     content String @db.Text
     role    String // "user" or "assistant"
 
-    identityId String?
-    roomId     String
+    // Sender logic
+    userPersonaId String?
+    characterId   String?
 
+    sessionId String
     createdAt DateTime @default(now())
 
-    identity Identity? @relation(fields: [identityId], references: [id], onDelete: SetNull)
-    room     Room      @relation(fields: [roomId], references: [id], onDelete: Cascade)
+    userPersona UserPersona? @relation(fields: [userPersonaId], references: [id], onDelete: Cascade)
+    character   Character?   @relation(fields: [characterId], references: [id], onDelete: Cascade)
+    session     ChatSession  @relation(fields: [sessionId], references: [id], onDelete: Cascade)
 }
