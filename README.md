@@ -1,13 +1,13 @@
-# AI Roleplay Platform
+# AI Chatting Platform
 
 An AI chat application built with the **T3 Stack** (Next.js, tRPC, Prisma, Tailwind) and **Vercel AI SDK**.
 
-This platform provides a rich, immersive environment for users to interact with AI characters using custom personas, dynamic scenarios, and advanced roleplay features.
+This platform provides a rich, immersive environment for users to interact with AI characters using custom personas, dynamic scenarios, and advanced chat features.
 
 ## 🚀 Key Features
 
 ### 🎭 Identity & Persona Management
--   **User Personas**: Create multiple personas for yourself (e.g., "The Detective", "The Space Marine") to use in different roleplays.
+-   **User Personas**: Create multiple personas for yourself (e.g., "The Detective", "The Space Marine") to use in different chats.
 -   **Character Management**: Create detailed AI characters with:
     -   **Avatars**: Visual representation for immersion.
     -   **Bio/Backstory**: Deep context for the AI to embody.
@@ -45,7 +45,7 @@ This platform provides a rich, immersive environment for users to interact with 
 ## 🔮 Future Plans
 
 -   **Lorebooks / World Info**: Selective context injection based on keywords.
--   **Group Chats**: Roleplay with multiple AI characters simultaneously.
+-   **Group Chats**: Chat with multiple AI characters simultaneously.
 -   **Voice Mode**: TTS (Text-to-Speech) and STT (Speech-to-Text) integration.
 -   **Image Generation**: Generate character avatars and scene backgrounds on the fly.
 -   **Public Sharing**: Share scenarios and characters with the community.
