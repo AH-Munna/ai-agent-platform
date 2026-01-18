@@ -14,10 +14,10 @@ async function main() {
     max_tokens: 8192,
     chat_template_kwargs: {"thinking":true},
     stream: true
-  })
+  } as any) as any;
    
   for await (const chunk of completion) {
-        const reasoning = chunk.choices[0]?.delta?.reasoning_content;
+        const reasoning = (chunk.choices[0]?.delta as any)?.reasoning_content;
     if (reasoning) process.stdout.write(reasoning);
         process.stdout.write(chunk.choices[0]?.delta?.content || '')
     

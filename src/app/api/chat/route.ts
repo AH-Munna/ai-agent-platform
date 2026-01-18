@@ -153,7 +153,7 @@ ${session.scenario ? `Scenario: ${session.scenario}` : ""}
       stream: true,
       // @ts-ignore
       chat_template_kwargs: { thinking: true }, 
-    });
+    } as any) as any;
 
     // 7. Manual Stream Handling
     const encoder = new TextEncoder();
