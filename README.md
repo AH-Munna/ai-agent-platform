@@ -13,6 +13,8 @@ This platform provides a rich, immersive environment for users to interact with 
     -   **Bio/Backstory**: Deep context for the AI to embody.
     -   **Greetings**: Unique starting messages to kick off the scene.
 
+![Character Edit Screen](public/character_edit.png)
+
 ### 💬 Advanced Chat Interface
 -   **Immersive UI**: Split view with chat history on the left and controls/personas on the right.
 -   **Edit & Delete**: Full control over the narrative. Edit any message (User or AI) or delete mistakes to steer the story.
@@ -26,6 +28,8 @@ This platform provides a rich, immersive environment for users to interact with 
     3.  Character Persona Context
     4.  Scenario Details
     5.  Chat History
+
+![Chat Interface](public/chat.png)
 
 ### ⚙️ Global Control
 -   **Model Selection**: Switch between different LLMs (via NVIDIA NIM or OpenAI compatible APIs).

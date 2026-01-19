@@ -9,6 +9,7 @@ import remarkGfm from "remark-gfm";
 import { toast } from "sonner";
 import { Avatar, AvatarFallback, AvatarImage } from "~/components/ui/avatar";
 import { Button } from "~/components/ui/button";
+import { Dialog, DialogContent, DialogDescription, DialogFooter, DialogHeader, DialogTitle } from "~/components/ui/dialog";
 import { Input } from "~/components/ui/input";
 import { ScrollArea } from "~/components/ui/scroll-area";
 import { cn } from "~/lib/utils";
@@ -37,9 +38,13 @@ export default function ChatPage({ params }: { params: Promise<{ sessionId: stri
   // Sync with DB
   const [editingMessageId, setEditingMessageId] = useState<string | null>(null);
   const [editContent, setEditContent] = useState("");
+  const [messageToDelete, setMessageToDelete] = useState<string | null>(null);
 
   const deleteMessageMutation = api.message.delete.useMutation({
-      onSuccess: () => utils.session.getById.invalidate({ id: sessionId })
+      onSuccess: () => {
+          utils.session.getById.invalidate({ id: sessionId });
+          setMessageToDelete(null);
+      }
   });
 
   const updateMessageMutation = api.message.update.useMutation({
@@ -227,7 +232,7 @@ export default function ChatPage({ params }: { params: Promise<{ sessionId: stri
                         </Avatar>
                     )}
 
-                    <div className={cn("flex flex-col max-w-[85%]", msg.role === "user" ? "items-end" : "items-start")}>
+                    <div className={cn("flex flex-col", editingMessageId === msg.id ? "w-full max-w-full" : "max-w-[85%]", msg.role === "user" ? "items-end" : "items-start")}>
                         <div className={cn(
                             "rounded-lg px-4 py-2 text-sm shadow-sm w-full",
                             msg.role === "user" 
@@ -259,7 +264,7 @@ export default function ChatPage({ params }: { params: Promise<{ sessionId: stri
                                 msg.role === "user" ? "justify-end" : "justify-start"
                             )}>
                                 <button onClick={() => startEditing(msg)} className="hover:text-foreground p-1"><Edit className="h-3 w-3" /></button>
-                                <button onClick={() => deleteMessageMutation.mutate({ id: msg.id! })} className="hover:text-destructive p-1"><Trash2 className="h-3 w-3" /></button>
+                                <button onClick={() => setMessageToDelete(msg.id!)} className="hover:text-destructive p-1"><Trash2 className="h-3 w-3" /></button>
                             </div>
                         )}
                     </div>
@@ -290,6 +295,18 @@ export default function ChatPage({ params }: { params: Promise<{ sessionId: stri
              </Button>
         </form>
       </div>
+      <Dialog open={!!messageToDelete} onOpenChange={(open) => !open && setMessageToDelete(null)}>
+          <DialogContent>
+              <DialogHeader>
+                  <DialogTitle>Delete Message</DialogTitle>
+                  <DialogDescription>Are you sure you want to delete this message? This cannot be undone.</DialogDescription>
+              </DialogHeader>
+              <DialogFooter>
+                  <Button variant="outline" onClick={() => setMessageToDelete(null)}>Cancel</Button>
+                  <Button variant="destructive" onClick={() => messageToDelete && deleteMessageMutation.mutate({ id: messageToDelete })}>Delete</Button>
+              </DialogFooter>
+          </DialogContent>
+      </Dialog>
     </div>
   );
 }

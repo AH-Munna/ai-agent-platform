@@ -70,7 +70,7 @@ export async function POST(req: Request) {
     
     // 3. Configure API Key
     const globalSettings: any = session.user.globalSettings || {};
-    const apiKey = process.env.NVIDIA_API_KEY; 
+    const apiKey = globalSettings.apiKey || process.env.NVIDIA_API_KEY; 
     
     if (!apiKey) {
         return new Response("Missing API Key", { status: 500 });
