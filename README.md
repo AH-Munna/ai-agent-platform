@@ -46,6 +46,9 @@ This platform provides a rich, immersive environment for users to interact with 
 -   **Auth**: NextAuth.js (v5 Beta)
 -   **AI**: Vercel AI SDK + NVIDIA NIM (DeepSeek, Llama 3) / OpenAI
 
+## 🔮 New Future Plans
+-   User Privacy based on accounts.
+
 ## 🔮 Future Plans
 
 -   **Lorebooks / World Info**: Selective context injection based on keywords.
