@@ -5,7 +5,7 @@ An AI chat application built with the **T3 Stack** (Next.js, tRPC, Prisma, Tailw
 This platform provides a rich, immersive environment for users to interact with AI characters using custom personas, dynamic scenarios, and advanced chat features.
 
 ## 🚀 Key Features
-live demo: ![Ai Agent Platform](https://ai-ah-munna.vercel.app/)
+live demo: [Ai Agent Platform](https://ai-ah-munna.vercel.app/)
 
 ### 🎭 Identity & Persona Management
 -   **User Personas**: Create multiple personas for yourself (e.g., "The Detective", "The Space Marine") to use in different chats.
