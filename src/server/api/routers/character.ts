@@ -13,21 +13,33 @@ export const characterRouter = createTRPCRouter({
       })
     )
     .mutation(async ({ ctx, input }) => {
-      // TODO: Link to ctx.session.user.id when auth is fully integrated in TRPC context
-      // For now, creating without user link or using a placeholder if strictly required, 
-      // but schema says userId is optional for Character.
+      let userId = ctx.session?.user?.id;
+      if (!userId) {
+        const firstUser = await ctx.db.user.findFirst();
+        if (firstUser) userId = firstUser.id;
+      }
+
       return ctx.db.character.create({
         data: {
           name: input.name,
           bio: input.bio,
           avatar: input.avatar,
           greeting: input.greeting,
+          userId: userId, // Link to current user
         },
       });
     }),
 
   getAll: publicProcedure.query(async ({ ctx }) => {
+    let userId = ctx.session?.user?.id;
+    if (!userId) {
+      const firstUser = await ctx.db.user.findFirst();
+      if (firstUser) userId = firstUser.id;
+      else return [];
+    }
+
     return ctx.db.character.findMany({
+      where: { userId }, // Filter by current user
       orderBy: { createdAt: "desc" },
     });
   }),

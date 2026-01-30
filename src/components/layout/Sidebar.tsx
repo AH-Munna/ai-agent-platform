@@ -70,6 +70,7 @@ export function Sidebar() {
     { href: "/", label: "Dashboard", icon: LayoutDashboard },
     { href: "/characters", label: "Characters", icon: Users },
     { href: "/personas", label: "My Personas", icon: User },
+    { href: "/rooms", label: "Rooms", icon: MessageSquare },
     { href: "/settings", label: "Settings", icon: Settings },
   ];
 

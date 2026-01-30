@@ -146,7 +146,7 @@ ${session.scenario ? `Scenario: ${session.scenario}` : ""}
 
     // 6. Create Completion Stream
     const response = await openai.chat.completions.create({
-      model: modelName || "deepseek-ai/deepseek-v3.1-terminus", 
+      model: modelName || "deepseek-ai/deepseek-v3.2", 
       messages: effectiveMessages as any,
       temperature: 0.9,
       max_tokens: 4096,

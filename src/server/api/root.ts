@@ -2,6 +2,7 @@ import { authRouter } from "~/server/api/routers/auth";
 import { characterRouter } from "~/server/api/routers/character";
 import { messageRouter } from "~/server/api/routers/message";
 import { personaRouter } from "~/server/api/routers/persona";
+import { roomRouter } from "~/server/api/routers/room"; // Import roomRouter
 import { sessionRouter } from "~/server/api/routers/session";
 import { userRouter } from "~/server/api/routers/user";
 import { createCallerFactory, createTRPCRouter } from "~/server/api/trpc";
@@ -18,6 +19,7 @@ export const appRouter = createTRPCRouter({
   persona: personaRouter,
   user: userRouter,
   message: messageRouter,
+  room: roomRouter, // Add roomRouter
 });
 
 // export type definition of API

@@ -1,5 +1,6 @@
 "use client";
 
+import { Loader2 } from "lucide-react";
 import { useSession } from "next-auth/react";
 import { useEffect, useState } from "react";
 import { toast } from "sonner";
@@ -7,8 +8,16 @@ import { Button } from "~/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "~/components/ui/card";
 import { Input } from "~/components/ui/input";
 import { Label } from "~/components/ui/label";
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "~/components/ui/select";
 import { Textarea } from "~/components/ui/textarea";
 import { api } from "~/trpc/react";
+
+interface Model {
+    id: string;
+    object?: string;
+    created?: number;
+    owned_by?: string;
+}
 
 export default function SettingsPage() {
     const { data: session } = useSession();
@@ -19,14 +28,62 @@ export default function SettingsPage() {
     const [apiKey, setApiKey] = useState("");
     const [baseUrl, setBaseUrl] = useState("");
     const [systemPrompt, setSystemPrompt] = useState("");
+    const [defaultModel, setDefaultModel] = useState("");
+    
+    const [models, setModels] = useState<Model[]>([]);
+    console.log(models);
+    const [loadingModels, setLoadingModels] = useState(false);
+    const [modelsError, setModelsError] = useState<string | null>(null);
 
     useEffect(() => {
         if (globalSettings) {
             setApiKey(globalSettings.apiKey || "");
             setBaseUrl(globalSettings.baseUrl || "");
             setSystemPrompt(globalSettings.systemPrompt || "");
+            setDefaultModel(globalSettings.defaultModel || "");
         }
     }, [globalSettings]);
+
+    const fetchModels = async () => {
+        const url = baseUrl || "https://integrate.api.nvidia.com/v1";
+        const key = apiKey || "";
+        
+        if (!key) {
+            setModelsError("API key required to fetch models");
+            return;
+        }
+        
+        setLoadingModels(true);
+        setModelsError(null);
+        
+        try {
+            const response = await fetch(`${url}/models`, {
+                headers: {
+                    "Authorization": `Bearer ${key}`,
+                    "Content-Type": "application/json"
+                }
+            });
+            
+            if (!response.ok) {
+                throw new Error(`Failed to fetch models: ${response.status}`);
+            }
+            
+            const data = await response.json();
+            setModels(data.data || []);
+        } catch (e: any) {
+            setModelsError(e.message);
+            setModels([]);
+        } finally {
+            setLoadingModels(false);
+        }
+    };
+
+    useEffect(() => {
+        if (apiKey) {
+            const timer = setTimeout(() => fetchModels(), 500);
+            return () => clearTimeout(timer);
+        }
+    }, [apiKey, baseUrl]);
 
     const updateSettingsMutation = api.user.updateSettings.useMutation({
         onSuccess: () => {
@@ -41,7 +98,8 @@ export default function SettingsPage() {
         updateSettingsMutation.mutate({
             apiKey,
             baseUrl,
-            systemPrompt
+            systemPrompt,
+            defaultModel
         });
     };
 
@@ -87,6 +145,45 @@ export default function SettingsPage() {
                             />
                             <p className="text-xs text-muted-foreground">Leave empty to use system environment variable.</p>
                         </div>
+                        
+                        <div className="space-y-2">
+                            <Label>Default Model</Label>
+                            <div className="flex gap-2">
+                                <Select value={defaultModel} onValueChange={setDefaultModel}>
+                                    <SelectTrigger className="flex-1">
+                                        <SelectValue placeholder={loadingModels ? "Loading models..." : "Select a model"} />
+                                    </SelectTrigger>
+                                    <SelectContent>
+                                        {models.length > 0 ? (
+                                            models.map((model) => (
+                                                <SelectItem key={model.id} value={model.id}>
+                                                    {model.id}
+                                                </SelectItem>
+                                            ))
+                                        ) : (
+                                            <SelectItem value="__none" disabled>
+                                                {modelsError || "No models available"}
+                                            </SelectItem>
+                                        )}
+                                    </SelectContent>
+                                </Select>
+                                <Button 
+                                    type="button" 
+                                    variant="outline" 
+                                    onClick={fetchModels}
+                                    disabled={loadingModels}
+                                >
+                                    {loadingModels ? <Loader2 className="w-4 h-4 animate-spin" /> : "Refresh"}
+                                </Button>
+                            </div>
+                            {modelsError && (
+                                <p className="text-xs text-destructive">{modelsError}</p>
+                            )}
+                            <p className="text-xs text-muted-foreground">
+                                Select a default model for chat. Models are fetched from your configured API.
+                            </p>
+                        </div>
+
                          <div className="space-y-2">
                             <Label>Global System Prompt</Label>
                             <Textarea 

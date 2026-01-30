@@ -52,7 +52,16 @@ export const sessionRouter = createTRPCRouter({
     }),
 
   getAll: publicProcedure.query(async ({ ctx }) => {
+    // Get current user ID for privacy filtering
+    let userId = ctx.session?.user?.id;
+    if (!userId) {
+      const firstUser = await ctx.db.user.findFirst();
+      if (firstUser) userId = firstUser.id;
+      else return [];
+    }
+
     return ctx.db.chatSession.findMany({
+      where: { userId }, // Filter by current user
       orderBy: { updatedAt: "desc" },
       include: {
         participants: true // Character[]

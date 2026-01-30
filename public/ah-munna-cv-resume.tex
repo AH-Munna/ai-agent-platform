@@ -1,0 +1,229 @@
+%-------------------------
+% Resume in Latex
+% Author : Jake Gutierrez
+% Based off of: https://github.com/sb2nov/resume
+% License : MIT
+%------------------------
+
+\documentclass[letterpaper,11pt]{article}
+
+\usepackage{latexsym}
+\usepackage[empty]{fullpage}
+\usepackage{titlesec}
+\usepackage{marvosym}
+\usepackage[usenames,dvipsnames]{color}
+\usepackage{verbatim}
+\usepackage{enumitem}
+\usepackage[hidelinks]{hyperref}
+\usepackage{fancyhdr}
+\usepackage[english]{babel}
+\usepackage{tabularx}
+\input{glyphtounicode}
+
+
+%----------FONT OPTIONS----------
+% sans-serif
+% \usepackage[sfdefault]{FiraSans}
+% \usepackage[sfdefault]{roboto}
+% \usepackage[sfdefault]{noto-sans}
+% \usepackage[default]{sourcesanspro}
+
+% serif
+% \usepackage{CormorantGaramond}
+% \usepackage{charter}
+
+
+\pagestyle{fancy}
+\fancyhf{} % clear all header and footer fields
+\fancyfoot{}
+\renewcommand{\headrulewidth}{0pt}
+\renewcommand{\footrulewidth}{0pt}
+
+% Adjust margins
+\addtolength{\oddsidemargin}{-0.5in}
+\addtolength{\evensidemargin}{-0.5in}
+\addtolength{\textwidth}{1in}
+\addtolength{\topmargin}{-.5in}
+\addtolength{\textheight}{1.0in}
+
+\urlstyle{same}
+
+\raggedbottom
+\raggedright
+\setlength{\tabcolsep}{0in}
+
+% Sections formatting
+\titleformat{\section}{
+  \vspace{-4pt}\scshape\raggedright\large
+}{}{0em}{}[\color{black}\titlerule \vspace{-5pt}]
+
+% Ensure that generate pdf is machine readable/ATS parsable
+\pdfgentounicode=1
+
+%-------------------------
+% Custom commands
+\newcommand{\resumeItem}[1]{
+  \item\small{
+    {#1 \vspace{-2pt}}
+  }
+}
+
+\newcommand{\resumeSubheading}[4]{
+  \vspace{-2pt}\item
+    \begin{tabular*}{0.97\textwidth}[t]{l@{\extracolsep{\fill}}r}
+      \textbf{#1} & #2 \\
+      \textit{\small#3} & \textit{\small #4} \\
+    \end{tabular*}\vspace{-7pt}
+}
+
+\newcommand{\resumeSubSubheading}[2]{
+    \item
+    \begin{tabular*}{0.97\textwidth}{l@{\extracolsep{\fill}}r}
+      \textit{\small#1} & \textit{\small #2} \\
+    \end{tabular*}\vspace{-7pt}
+}
+
+\newcommand{\resumeProjectHeading}[2]{
+    \item
+    \begin{tabular*}{0.97\textwidth}{l@{\extracolsep{\fill}}r}
+      \small#1 & #2 \\
+    \end{tabular*}\vspace{-7pt}
+}
+
+\newcommand{\resumeSubItem}[1]{\resumeItem{#1}\vspace{-4pt}}
+
+\renewcommand\labelitemii{$\vcenter{\hbox{\tiny$\bullet$}}$}
+
+\newcommand{\resumeSubHeadingListStart}{\begin{itemize}[leftmargin=0.15in, label={}]}
+\newcommand{\resumeSubHeadingListEnd}{\end{itemize}}
+\newcommand{\resumeItemListStart}{\begin{itemize}}
+\newcommand{\resumeItemListEnd}{\end{itemize}\vspace{-5pt}}
+
+%-------------------------------------------
+%%%%%%  RESUME STARTS HERE  %%%%%%%%%%%%%%%%############
+
+
+\begin{document}
+
+%----------HEADER----------
+% \begin{tabular*}{\textwidth}{l@{\extracolsep{\fill}}r}
+%   \textbf{\href{http://sourabhbajaj.com/}{\Large Sourabh Bajaj}} & Email : \href{mailto:sourabh@sourabhbajaj.com}{sourabh@sourabhbajaj.com}\\
+%   \href{http://sourabhbajaj.com/}{http://www.sourabhbajaj.com} & Mobile : +1-123-456-7890 \\
+% \end{tabular*}
+
+\begin{center}
+    \textbf{\Huge \scshape Ahsanul Haque Munna} \\ \vspace{1pt}
+    \small +880 17010 59628 $|$ \href{mailto:ahmunna.developer@gmail.com}{\underline{ahmunna.developer@gmail.com}} $|$ 
+    \href{https://ah-munna.github.io}{\underline{ah-munna.github.io}} $|$
+    \href{https://github.com/ah-munna}{\underline{github.com/ah-munna}}
+\end{center}
+
+
+%-----------EDUCATION-----------
+\section{\textbf{Education}}
+  \resumeSubHeadingListStart
+    \resumeSubheading
+      {Asian University of Bangladesh}{Ashulia}
+      {Bachelor of Science in Computer Science \& Engineering}{2017 -- 2022}
+    \resumeSubheading
+      {BAF Shaheen College}{Dhaka}
+      {Higher Secondary School Certificate, Science}{2014 -- 2016}
+  \resumeSubHeadingListEnd
+
+
+%-----------EXPERIENCE-----------
+\section{\textbf{Experience}}
+  \resumeSubHeadingListStart
+
+    \resumeSubheading
+      {Independent Software Developer}{Remote}
+      {Freelance Automation Engineer}{June 2024 -- Present}
+      \resumeItemListStart
+        \resumeItem{Developed custom automation suites using Python, Tkinter, and Playwright for a digital marketing client.}
+        \resumeItem{Reduced manual workflow time by \textbf{80\%} and helped double client revenue through process optimization.}
+        \resumeItem{Engineered "Vampire Space Survivor," a simulation game using Godot, managing complex state logic and physics.}
+        \resumeItem{Conducted \textbf{R\&D} on Large Language Models (LLMs) to build a self-conversational AI system.}
+      \resumeItemListEnd
+
+    \resumeSubheading
+      {Nexis Limited}{Dhaka, Bangladesh}
+      {Fullstack Web Developer}{Aug. 2023 -- June 2024}
+      \resumeItemListStart
+        \resumeItem{Developed and maintained scalable SaaS applications using Django, TypeScript, React, Next.js, and Prisma.}
+        \resumeItem{Optimized database schemas, significantly enhancing feature sets and query performance for high-traffic products.}
+        \resumeItem{Collaborated with cross-functional teams to integrate secure SSO (Single Sign-On) solutions.}
+      \resumeItemListEnd
+
+    \resumeSubSubheading
+     {Frontend Developer}{Mar. 2023 -- Aug. 2023}
+     \resumeItemListStart
+        \resumeItem{Built responsive web pages using React.js and Next.js, ensuring cross-browser compatibility.}
+        \resumeItem{Resolved critical bugs and maintained frontend architecture for internal tools.}
+     \resumeItemListEnd
+
+    \resumeSubSubheading
+     {Frontend Developer Intern}{Dec. 2022 -- Mar. 2023}
+     \resumeItemListStart
+        \resumeItem{Assisted in the development of core web application modules using React.js and Next.js.}
+     \resumeItemListEnd
+
+  \resumeSubHeadingListEnd
+
+
+%-----------PROJECTS-----------
+\section{\textbf{Projects}}
+    \resumeSubHeadingListStart
+      \resumeProjectHeading
+          {\textbf{Jahan Academy (EdTech Platform)} $|$ \emph{Next.js, NeonDB, NextAuth, Tailwind}}{Current}
+          \resumeItemListStart
+            \resumeItem{Architecting a comprehensive quiz platform for middle-school students to track academic progress.}
+            \resumeItem{Implementing secure authentication via NextAuth and a high-performance database layer using NeonDB.}
+            \resumeItem{Building a reactive teacher dashboard for real-time student analytics and grade management.}
+          \resumeItemListEnd
+      \resumeProjectHeading
+          {\textbf{Thesis Project Management System} $|$ \emph{Next.js, TypeScript, Prisma}}{2023}
+          \resumeItemListStart
+            \resumeItem{Developed a full-stack application to manage thesis submissions for the Asian University of Bangladesh.}
+            \resumeItem{Streamlined the approval workflow between students and supervisors, replacing manual paper trails.}
+          \resumeItemListEnd
+      \resumeProjectHeading
+          {\textbf{AI Chatting Platform} $|$ \emph{Next.js, tRPC, TypeScript, Prisma, Vercel AI SDK}}{2025}
+          \resumeItemListStart
+            \resumeItem{An AI chat application built with the T3 Stack and Vercel AI SDK.}
+            \resumeItem{This platform provides a rich, immersive environment for users to interact with AI characters using custom personas, dynamic scenarios, and advanced chat features.}
+            \resumeItem{Actively updating with robust future plans. \href{https://ai-ah-munna.vercel.app/}{\underline{live url}} \href{https://github.com/AH-Munna/ai-agent-platform}{\underline{github}}}
+          \resumeItemListEnd
+    \resumeSubHeadingListEnd
+
+
+%-----------TECHNICAL SKILLS-----------
+\section{\textbf{Technical Skills}}
+ \begin{itemize}[leftmargin=0.15in, label={}]
+    \small{\item{
+     \textbf{Languages}{: Python, JavaScript, TypeScript, C++, SQL} \\
+     \textbf{Frameworks}{: React, Next.js, Django, Tailwind CSS, Bootstrap} \\
+     \textbf{Tools}{: Git, Docker, Prisma, Linux, VS Code} \\
+     \textbf{Concepts}{: Competitive Programming, Data Structures \& Algorithms, REST APIs}
+    }}
+ \end{itemize}
+
+%-----------CERTIFICATIONS-----------
+\section{\textbf{Certifications}}
+ \begin{itemize}[leftmargin=0.15in, label={}]
+    \small{\item{
+     \textbf{Shikho Technologies}{: Fullstack Python and JavaScript Development Course (2021)}
+    }}
+    \small{\item{
+     \textbf{IUPC}{: GUB Inter-University Programming Contest (2018), SUST Inter-University Programming Contest (2018)}
+    }}
+    \small{\item{
+     \textbf{ICPC}{: DIU ICPC 2018 Asia Regional}
+    }}
+    \small{\item{
+     \textbf{Problem Solving}{: \href{https://codeforces.com/profile/munna33}{\underline{codeforces}} \href{https://www.hackerrank.com/profile/AH_Munna}{\underline{hackerrank}}}
+    }}
+ \end{itemize}
+
+
+%-------------------------------------------
+\end{document}

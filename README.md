@@ -1,62 +1,52 @@
-# AI Chatting Platform
+# Fullstack AI Agent Platform
 
-An AI chat application built with the **T3 Stack** (Next.js, tRPC, Prisma, Tailwind) and **Vercel AI SDK**.
+![Project Status](https://img.shields.io/badge/Status-Active_Development-success)
+![Tech Stack](https://img.shields.io/badge/Stack-T3_(Next.js_+_tRPC_+_Prisma)-blue)
 
-This platform provides a rich, immersive environment for users to interact with AI characters using custom personas, dynamic scenarios, and advanced chat features.
+A professional-grade AI platform architected to facilitate complex interactions between users and autonomous AI agents. Built with modern web standards, this platform supports real-time streaming, multi-agent collaboration, and deep persona management.
 
-## 🚀 Key Features
-live demo: [Ai Agent Platform](https://ai-ah-munna.vercel.app/)
+## 🚀 Project Overview
 
-### 🎭 Identity & Persona Management
--   **User Personas**: Create multiple personas for yourself (e.g., "The Detective", "The Space Marine") to use in different chats.
--   **Character Management**: Create detailed AI characters with:
-    -   **Avatars**: Visual representation for immersion.
-    -   **Bio/Backstory**: Deep context for the AI to embody.
-    -   **Greetings**: Unique starting messages to kick off the scene.
+This application serves as a comprehensive ecosystem for:
+-   **Immersive Roleplay**: Creating and interacting with highly detailed AI personas.
+-   **Multi-Agent Agnostic Systems**: Orchestrating autonomous rooms where AI agents debate, collaborate, or roleplay scenarios without human intervention.
+-   **Creative Writing Assistance**: Utilizing AI as dynamic co-authors with memory and context awareness.
 
-![Character Edit Screen](public/character_edit.png)
+## 🛠️ Technical Architecture
 
-### 💬 Advanced Chat Interface
--   **Immersive UI**: Split view with chat history on the left and controls/personas on the right.
--   **Edit & Delete**: Full control over the narrative. Edit any message (User or AI) or delete mistakes to steer the story.
--   **Rich Styling**:
-    -   *italics* are gray for actions/thoughts.
-    -   "Quotes" are orange for dialogue.
-    -   Markdown support for complex formatting.
--   **Dynamic Context**: The system automatically injects:
-    1.  Global Instructions (Main Prompt)
-    2.  User Persona Context
-    3.  Character Persona Context
-    4.  Scenario Details
-    5.  Chat History
+This project leverages the **T3 Stack** to ensure end-to-end type safety, scalability, and developer experience.
 
-![Chat Interface](public/chat.png)
+### Core Stack
+-   **Frontend**: [Next.js 16](https://nextjs.org/) (App Router) for server-side rendering and performant client components.
+-   **Styling**: **Tailwind CSS** paired with **shadcn/ui** for a responsive, accessible, and premium design system.
+-   **API Layer**: **tRPC** for robust, type-safe communication between client and server, eliminating API glue code.
+-   **Database**: **PostgreSQL** (via Neon) managed by **Prisma ORM** for reliable data modeling and migrations.
 
-### ⚙️ Global Control
--   **Model Selection**: Switch between different LLMs (via NVIDIA NIM or OpenAI compatible APIs).
--   **System Prompts**: Define global rules that apply to all characters (e.g., "Always write in third person").
--   **API Key Management**: Securely manage your AI provider keys.
+### AI & Intelligence
+-   **Vercel AI SDK**: For standardized, stream-ready AI processing.
+-   **Model Agnostic**: Integrated with **NVIDIA NIM** (DeepSeek, Llama 3) and OpenAI, allowing for flexible model switching based on cost/performance needs.
+-   **Prompt Engineering**: Custom system prompt injection handling distinct layers of context: *Global Constraints > Character Persona > User Context > Scenario*.
 
-## 🛠️ Tech Stack
+## ✨ Key Features
 
--   **Framework**: [Next.js 16](https://nextjs.org/) (App Router)
--   **Language**: TypeScript
--   **Styling**: Tailwind CSS + [shadcn/ui](https://ui.shadcn.com/)
--   **Database**: PostgreSQL (Neon) with Prisma ORM
--   **API**: tRPC (End-to-end typesafe APIs)
--   **Auth**: NextAuth.js (v5 Beta)
--   **AI**: Vercel AI SDK + NVIDIA NIM (DeepSeek, Llama 3) / OpenAI
+### 1. Robust Persona System
+-   **Deep Characterization**: Characters have distinctive avatars, bio-data, and static greeting logic.
+-   **Identity Management**: Users can switch between multiple "User Personas" to interact with characters from different perspectives (e.g., interacting as a Detective vs. a Villain).
 
-## 🔮 Near Future Plans
--   User Privacy based on accounts.
+### 2. Real-Time Chat Experience
+-   **Steerable Narrative**: Full control to edit or delete any message (User or AI) to guide the direction of the conversation.
+-   **Rich Text Rendering**: Specialized parsing for *actions/thoughts* (gray italics) and "dialogue" (highlighted) to improve readability.
+-   **Smart Context Injection**: Automates the retrieval and insertion of relevant character lore and scenario details into the LLM context window.
 
-## 🔮 Future Plans
+### 3. Autonomous Agent Rooms
+-   **Observation Mode**: Create rooms where multiple AI agents interact autonomously based on a seed scenario.
+-   **Supervisor Control**: The user acts as a "Director", observing the flow and intervening only when necessary to change the topic or add new constraints.
 
--   **Lorebooks / World Info**: Selective context injection based on keywords.
--   **Group Chats**: Chat with multiple AI characters simultaneously.
--   **Voice Mode**: TTS (Text-to-Speech) and STT (Speech-to-Text) integration.
--   **Image Generation**: Generate character avatars and scene backgrounds on the fly.
--   **Public Sharing**: Share scenarios and characters with the community.
+## 🔮 Roadmap & Future Engineering
 
+-   **Vector Memory**: Integrating pgvector for long-term semantic memory retrieval (`RAG`).
+-   **Voice synthesis**: Implementing TTS/STT for hands-free interaction.
+-   **Deployment**: Optimizing for edge runtime deployment.
 
-*Built with ❤️ by AH Munna*
+---
+*Built by [Ahmed Munna](https://github.com/AH-Munna)*

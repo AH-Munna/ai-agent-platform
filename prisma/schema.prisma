@@ -24,6 +24,7 @@ model User {
     personas   UserPersona[]
     characters Character[] // Characters created by this user
     sessions   ChatSession[]
+    rooms      Room[]
 }
 
 model UserPersona {
@@ -50,11 +51,12 @@ model Character {
     createdAt DateTime @default(now())
     updatedAt DateTime @updatedAt
 
-    user     User?         @relation(fields: [userId], references: [id], onDelete: Cascade)
-    messages Message[]
-    sessions ChatSession[] // Sessions this character is in (Many-to-Many via implicit or explicit?)
-    // Simpler: A session usually has ONE primary character in SillyTavern style, 
-    // but we might want multi-character. Let's keep it Many-to-Many.
+    user         User?         @relation(fields: [userId], references: [id], onDelete: Cascade)
+    messages     Message[]
+    sessions     ChatSession[] // Sessions this character is in
+    roomMessages RoomMessage[]
+    roomsAsA     Room[]        @relation("RoomCharacterA")
+    roomsAsB     Room[]        @relation("RoomCharacterB")
 }
 
 model ChatSession {
@@ -90,4 +92,36 @@ model Message {
     userPersona UserPersona? @relation(fields: [userPersonaId], references: [id], onDelete: Cascade)
     character   Character?   @relation(fields: [characterId], references: [id], onDelete: Cascade)
     session     ChatSession  @relation(fields: [sessionId], references: [id], onDelete: Cascade)
+}
+
+// AI-AI Conversation Room
+model Room {
+    id           String   @id @default(cuid())
+    userId       String
+    name         String
+    scenario     String?  @db.Text
+    status       String   @default("idle") // idle, running, stopped, error
+    errorMessage String?
+    turnCount    Int      @default(0)
+    maxTurns     Int      @default(10)
+    createdAt    DateTime @default(now())
+    updatedAt    DateTime @updatedAt
+
+    user         User          @relation(fields: [userId], references: [id], onDelete: Cascade)
+    characterA   Character     @relation("RoomCharacterA", fields: [characterAId], references: [id])
+    characterB   Character     @relation("RoomCharacterB", fields: [characterBId], references: [id])
+    characterAId String
+    characterBId String
+    messages     RoomMessage[]
+}
+
+model RoomMessage {
+    id          String   @id @default(cuid())
+    content     String   @db.Text
+    characterId String
+    roomId      String
+    createdAt   DateTime @default(now())
+
+    character Character @relation(fields: [characterId], references: [id], onDelete: Cascade)
+    room      Room      @relation(fields: [roomId], references: [id], onDelete: Cascade)
 }

@@ -16,6 +16,7 @@ export const userRouter = createTRPCRouter({
         apiKey: z.string().optional(),
         baseUrl: z.string().optional(),
         systemPrompt: z.string().optional(),
+        defaultModel: z.string().optional(),
       })
     )
     .mutation(async ({ ctx, input }) => {
