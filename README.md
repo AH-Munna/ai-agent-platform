@@ -1,52 +1,138 @@
-# Fullstack AI Agent Platform
+# AI Agent Platform 🤖
 
-![Project Status](https://img.shields.io/badge/Status-Active_Development-success)
-![Tech Stack](https://img.shields.io/badge/Stack-T3_(Next.js_+_tRPC_+_Prisma)-blue)
+A modern AI chat platform built with the T3 Stack, featuring immersive conversations with AI characters, AI-to-AI room dialogues, and a stunning animated dashboard.
 
-A professional-grade AI platform architected to facilitate complex interactions between users and autonomous AI agents. Built with modern web standards, this platform supports real-time streaming, multi-agent collaboration, and deep persona management.
+![Next.js](https://img.shields.io/badge/Next.js-16-black?logo=next.js)
+![TypeScript](https://img.shields.io/badge/TypeScript-5-blue?logo=typescript)
+![Prisma](https://img.shields.io/badge/Prisma-ORM-2D3748?logo=prisma)
+![tRPC](https://img.shields.io/badge/tRPC-API-398CCB)
+![Tailwind](https://img.shields.io/badge/Tailwind-CSS-38B2AC?logo=tailwindcss)
 
-## 🚀 Project Overview
+## ✨ Features
 
-This application serves as a comprehensive ecosystem for:
--   **Immersive Roleplay**: Creating and interacting with highly detailed AI personas.
--   **Multi-Agent Agnostic Systems**: Orchestrating autonomous rooms where AI agents debate, collaborate, or roleplay scenarios without human intervention.
--   **Creative Writing Assistance**: Utilizing AI as dynamic co-authors with memory and context awareness.
+### 🎭 AI Character Chat
+- Create and customize AI characters with unique personalities
+- Engage in contextual conversations with custom system prompts
+- Real-time streaming responses with beautiful markdown rendering
 
-## 🛠️ Technical Architecture
+### 🏠 AI Rooms
+- Watch two AI characters converse with each other
+- Alternating dialogue system with configurable turn counts
+- Real-time streaming with proper character positioning
 
-This project leverages the **T3 Stack** to ensure end-to-end type safety, scalability, and developer experience.
+### 👤 Custom Personas
+- Define your user persona for personalized interactions
+- Configure how AI characters perceive and respond to you
 
-### Core Stack
--   **Frontend**: [Next.js 16](https://nextjs.org/) (App Router) for server-side rendering and performant client components.
--   **Styling**: **Tailwind CSS** paired with **shadcn/ui** for a responsive, accessible, and premium design system.
--   **API Layer**: **tRPC** for robust, type-safe communication between client and server, eliminating API glue code.
--   **Database**: **PostgreSQL** (via Neon) managed by **Prisma ORM** for reliable data modeling and migrations.
+### ⚙️ Flexible Configuration
+- Bring your own API key (NVIDIA NIM, OpenAI, or any OpenAI-compatible API)
+- Model selection dropdown with live API fetch
+- Global system prompts for consistent behavior
 
-### AI & Intelligence
--   **Vercel AI SDK**: For standardized, stream-ready AI processing.
--   **Model Agnostic**: Integrated with **NVIDIA NIM** (DeepSeek, Llama 3) and OpenAI, allowing for flexible model switching based on cost/performance needs.
--   **Prompt Engineering**: Custom system prompt injection handling distinct layers of context: *Global Constraints > Character Persona > User Context > Scenario*.
+### 🎨 Modern UI/UX
+- Animated dashboard with Framer Motion
+- Glassmorphism design with gradient accents
+- Responsive layout for all devices
+- Dark mode optimized
 
-## ✨ Key Features
+## 🛠️ Tech Stack
 
-### 1. Robust Persona System
--   **Deep Characterization**: Characters have distinctive avatars, bio-data, and static greeting logic.
--   **Identity Management**: Users can switch between multiple "User Personas" to interact with characters from different perspectives (e.g., interacting as a Detective vs. a Villain).
+| Category | Technology |
+|----------|------------|
+| **Framework** | Next.js 16 (App Router) |
+| **Language** | TypeScript |
+| **Styling** | Tailwind CSS |
+| **Database** | PostgreSQL + Prisma ORM |
+| **API Layer** | tRPC |
+| **Auth** | NextAuth.js |
+| **AI Integration** | OpenAI SDK (NVIDIA NIM compatible) |
+| **Animations** | Framer Motion |
+| **UI Components** | Radix UI + shadcn/ui |
 
-### 2. Real-Time Chat Experience
--   **Steerable Narrative**: Full control to edit or delete any message (User or AI) to guide the direction of the conversation.
--   **Rich Text Rendering**: Specialized parsing for *actions/thoughts* (gray italics) and "dialogue" (highlighted) to improve readability.
--   **Smart Context Injection**: Automates the retrieval and insertion of relevant character lore and scenario details into the LLM context window.
+## 🚀 Getting Started
 
-### 3. Autonomous Agent Rooms
--   **Observation Mode**: Create rooms where multiple AI agents interact autonomously based on a seed scenario.
--   **Supervisor Control**: The user acts as a "Director", observing the flow and intervening only when necessary to change the topic or add new constraints.
+### Prerequisites
+- Node.js 18+
+- PostgreSQL database (or NeonDB)
+- API key (NVIDIA NIM or OpenAI-compatible)
 
-## 🔮 Roadmap & Future Engineering
+### Installation
 
--   **Vector Memory**: Integrating pgvector for long-term semantic memory retrieval (`RAG`).
--   **Voice synthesis**: Implementing TTS/STT for hands-free interaction.
--   **Deployment**: Optimizing for edge runtime deployment.
+```bash
+# Clone the repository
+git clone https://github.com/AH-Munna/ai-agent-platform.git
+cd ai-agent-platform
+
+# Install dependencies
+npm install
+
+# Set up environment variables
+cp .env.example .env
+# Edit .env with your database URL and other settings
+
+# Push database schema
+npx prisma db push
+
+# Run development server
+npm run dev
+```
+
+### Environment Variables
+
+```env
+DATABASE_URL="postgresql://..."
+DIRECT_URL="postgresql://..."
+AUTH_SECRET="your-auth-secret"
+NVIDIA_API_KEY="your-nvidia-api-key" # Optional if configured in settings
+```
+
+## 📸 Screenshots
+
+*Dashboard with animated components and developer profile*
+
+## 🏗️ Project Structure
+
+```
+src/
+├── app/                    # Next.js App Router pages
+│   ├── (dashboard)/        # Protected dashboard routes
+│   │   ├── page.tsx        # Animated portfolio dashboard
+│   │   ├── chat/           # AI character chat
+│   │   ├── room/           # AI-to-AI rooms
+│   │   ├── characters/     # Character management
+│   │   ├── personas/       # User persona management
+│   │   └── settings/       # API configuration
+│   └── api/                # API routes
+├── components/             # Reusable UI components
+│   ├── dashboard/          # Dashboard-specific components
+│   └── ui/                 # shadcn/ui components
+├── server/                 # Server-side code
+│   ├── api/                # tRPC routers
+│   └── db.ts               # Prisma client
+└── trpc/                   # tRPC setup
+```
+
+## 👨‍💻 Developer
+
+**Ahsanul Haque Munna**  
+Fullstack Developer | AI Enthusiast | Problem Solver
+
+- 🌐 [Portfolio](https://ah-munna.github.io)
+- 💻 [GitHub](https://github.com/ah-munna)
+- 📧 [ahmunna.developer@gmail.com](mailto:ahmunna.developer@gmail.com)
+
+### Experience
+- Fullstack Web Developer at Nexis Limited (2022-2024)
+- Independent Software Developer & Automation Engineer
+- ICPC Asia Regional Participant
+
+### Skills
+Python, JavaScript, TypeScript, React, Next.js, Django, Prisma, PostgreSQL, Docker, Git
+
+## 📝 License
+
+MIT License - feel free to use this project for learning or as a template.
 
 ---
-*Built by [Ahmed Munna](https://github.com/AH-Munna)*
+
+⭐ Star this repo if you found it helpful!
