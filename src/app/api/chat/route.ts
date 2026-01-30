@@ -144,9 +144,12 @@ ${session.scenario ? `Scenario: ${session.scenario}` : ""}
     } catch (e) { console.error("Log Error", e); }
     // -----------------------
 
-    // 6. Create Completion Stream
+      // 6. Create Completion Stream
+      // Use modelName from request, fallback to saved defaultModel, then hardcoded default
+      const effectiveModel = modelName || globalSettings.defaultModel || "deepseek-ai/deepseek-v3.2";
+      console.log("Using model:", effectiveModel);
     const response = await openai.chat.completions.create({
-      model: modelName || "deepseek-ai/deepseek-v3.2", 
+      model: effectiveModel, 
       messages: effectiveMessages as any,
       temperature: 0.9,
       max_tokens: 4096,

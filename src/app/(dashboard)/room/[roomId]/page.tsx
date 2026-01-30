@@ -58,6 +58,7 @@ export default function RoomPage({ params }: { params: Promise<{ roomId: string 
     const abortControllerRef = useRef<AbortController | null>(null);
 
     const isStreamingRef = useRef(false);
+    const messageCountRef = useRef(0);
 
     // Sync messages from DB - avoid overwriting streaming state
     useEffect(() => {
@@ -72,6 +73,9 @@ export default function RoomPage({ params }: { params: Promise<{ roomId: string 
                 character: m.character,
                 characterId: m.characterId
             }));
+            
+            // Sync messageCountRef with DB
+            messageCountRef.current = uiMessages.length;
             
             // Preserve streaming placeholder if present
             setMessages(prev => {
@@ -148,8 +152,8 @@ export default function RoomPage({ params }: { params: Promise<{ roomId: string 
             abortControllerRef.current = controller;
             isStreamingRef.current = true;
             
-            // Determine next speaker based on current message count
-            const currentMsgCount = messages.filter(m => m.id !== "streaming").length;
+            // Use ref for message count - this persists across async calls
+            const currentMsgCount = messageCountRef.current;
             const isTurnA = currentMsgCount % 2 === 0;
             const nextSpeaker = isTurnA ? room.characterA : room.characterB;
             
@@ -194,8 +198,19 @@ export default function RoomPage({ params }: { params: Promise<{ roomId: string 
             }
 
             isStreamingRef.current = false;
-            setMessages(prev => prev.filter(m => m.id !== "streaming"));
-            utils.room.getById.invalidate({ id: roomId });
+            
+            // Convert streaming placeholder to a temp message to keep positioning correct
+            const tempId = `temp-${Date.now()}`;
+            setMessages(prev => prev.map(m => {
+                if (m.id === "streaming") {
+                    return { ...m, id: tempId, content: accumulatedResponse };
+                }
+                return m;
+            }));
+            
+            // Increment ref so next turn knows the correct speaker
+            messageCountRef.current++;
+            
             return true;
 
         } catch (e: any) {
@@ -236,6 +251,9 @@ export default function RoomPage({ params }: { params: Promise<{ roomId: string 
             if (currentTurns > 0) await new Promise(r => setTimeout(r, 1000));
         }
         
+        // Sync with DB to replace temp messages with real ones
+        utils.room.getById.invalidate({ id: roomId });
+        
         if (completed) {
             setStatus("idle");
         }
@@ -249,6 +267,8 @@ export default function RoomPage({ params }: { params: Promise<{ roomId: string 
         }
         setStatus("stopped");
         setTurnsRemaining(0);
+        // Sync with DB to get persisted messages
+        utils.room.getById.invalidate({ id: roomId });
     };
 
     const [isRestartConfirmOpen, setIsRestartConfirmOpen] = useState(false);

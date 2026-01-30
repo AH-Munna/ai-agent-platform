@@ -31,7 +31,6 @@ export default function SettingsPage() {
     const [defaultModel, setDefaultModel] = useState("");
     
     const [models, setModels] = useState<Model[]>([]);
-    console.log(models);
     const [loadingModels, setLoadingModels] = useState(false);
     const [modelsError, setModelsError] = useState<string | null>(null);
 
@@ -57,19 +56,25 @@ export default function SettingsPage() {
         setModelsError(null);
         
         try {
-            const response = await fetch(`${url}/models`, {
-                headers: {
-                    "Authorization": `Bearer ${key}`,
-                    "Content-Type": "application/json"
-                }
+            // Use server-side proxy to avoid CORS issues
+            const params = new URLSearchParams({
+                baseUrl: url,
+                apiKey: key,
             });
+            const response = await fetch(`/api/models?${params.toString()}`);
             
             if (!response.ok) {
-                throw new Error(`Failed to fetch models: ${response.status}`);
+                const errorData = await response.json();
+                throw new Error(errorData.error || `Failed to fetch models: ${response.status}`);
             }
             
             const data = await response.json();
-            setModels(data.data || []);
+            // Deduplicate models by id
+            const uniqueModels = (data.data || []).filter(
+                (model: Model, index: number, self: Model[]) => 
+                    index === self.findIndex((m) => m.id === model.id)
+            );
+            setModels(uniqueModels);
         } catch (e: any) {
             setModelsError(e.message);
             setModels([]);

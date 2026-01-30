@@ -1,0 +1,84 @@
+[2026-01-30T17:02:14.442Z] Room Chat Request: {
+  "roomId": "cml0u01a8000v0mknekre512r"
+}
+[2026-01-30T17:02:17.287Z] Turn Logic: {
+  "msgCount": 1,
+  "speaker": "Alice "
+}
+[2026-01-30T17:02:20.663Z] Room Chat Request: {
+  "roomId": "cml0u01a8000v0mknekre512r"
+}
+[2026-01-30T17:02:23.133Z] Turn Logic: {
+  "msgCount": 2,
+  "speaker": "Jone"
+}
+[2026-01-30T17:02:26.017Z] Room Chat Request: {
+  "roomId": "cml0u01a8000v0mknekre512r"
+}
+[2026-01-30T17:02:28.130Z] Turn Logic: {
+  "msgCount": 3,
+  "speaker": "Alice "
+}
+[2026-01-30T17:02:30.583Z] Room Chat Request: {
+  "roomId": "cml0u01a8000v0mknekre512r"
+}
+[2026-01-30T17:02:32.699Z] Turn Logic: {
+  "msgCount": 4,
+  "speaker": "Jone"
+}
+[2026-01-30T17:02:35.534Z] Room Chat Request: {
+  "roomId": "cml0u01a8000v0mknekre512r"
+}
+[2026-01-30T17:02:37.689Z] Turn Logic: {
+  "msgCount": 5,
+  "speaker": "Alice "
+}
+[2026-01-30T17:02:40.315Z] Room Chat Request: {
+  "roomId": "cml0u01a8000v0mknekre512r"
+}
+[2026-01-30T17:02:42.444Z] Turn Logic: {
+  "msgCount": 6,
+  "speaker": "Jone"
+}
+[2026-01-30T17:02:44.893Z] Room Chat Request: {
+  "roomId": "cml0u01a8000v0mknekre512r"
+}
+[2026-01-30T17:02:48.346Z] Turn Logic: {
+  "msgCount": 7,
+  "speaker": "Alice "
+}
+[2026-01-30T17:02:51.268Z] Room Chat Request: {
+  "roomId": "cml0u01a8000v0mknekre512r"
+}
+[2026-01-30T17:02:53.794Z] Turn Logic: {
+  "msgCount": 8,
+  "speaker": "Jone"
+}
+[2026-01-30T17:02:56.454Z] Room Chat Request: {
+  "roomId": "cml0u01a8000v0mknekre512r"
+}
+[2026-01-30T17:02:58.957Z] Turn Logic: {
+  "msgCount": 9,
+  "speaker": "Alice "
+}
+[2026-01-30T17:03:01.588Z] Room Chat Request: {
+  "roomId": "cml0u01a8000v0mknekre512r"
+}
+[2026-01-30T17:03:03.950Z] Turn Logic: {
+  "msgCount": 10,
+  "speaker": "Jone"
+}
+[2026-01-30T17:03:42.703Z] Room Chat Request: {
+  "roomId": "cml0trobx00070mknv3evd2aq"
+}
+[2026-01-30T17:03:44.978Z] Turn Logic: {
+  "msgCount": 1,
+  "speaker": "Alice "
+}
+[2026-01-30T17:06:21.531Z] Room Chat Request: {
+  "roomId": "cml0u01a8000v0mknekre512r"
+}
+[2026-01-30T17:06:23.422Z] Turn Logic: {
+  "msgCount": 1,
+  "speaker": "Alice "
+}
