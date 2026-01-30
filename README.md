@@ -49,46 +49,12 @@ A modern AI chat platform built with the T3 Stack, featuring immersive conversat
 | **Animations** | Framer Motion |
 | **UI Components** | Radix UI + shadcn/ui |
 
-## 🚀 Getting Started
-
-### Prerequisites
-- Node.js 18+
-- PostgreSQL database (or NeonDB)
-- API key (NVIDIA NIM or OpenAI-compatible)
-
-### Installation
-
-```bash
-# Clone the repository
-git clone https://github.com/AH-Munna/ai-agent-platform.git
-cd ai-agent-platform
-
-# Install dependencies
-npm install
-
-# Set up environment variables
-cp .env.example .env
-# Edit .env with your database URL and other settings
-
-# Push database schema
-npx prisma db push
-
-# Run development server
-npm run dev
-```
-
-### Environment Variables
-
-```env
-DATABASE_URL="postgresql://..."
-DIRECT_URL="postgresql://..."
-AUTH_SECRET="your-auth-secret"
-NVIDIA_API_KEY="your-nvidia-api-key" # Optional if configured in settings
-```
-
 ## 📸 Screenshots
 
 *Dashboard with animated components and developer profile*
+![](/public/dashboard.png)
+![](/public/dashboard.png)
+![](/public/chat.png)
 
 ## 🏗️ Project Structure
 
