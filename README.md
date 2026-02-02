@@ -53,7 +53,7 @@ A modern AI chat platform built with the T3 Stack, featuring immersive conversat
 
 *Dashboard with animated components and developer profile*
 ![](/public/dashboard.png)
-![](/public/dashboard.png)
+![](/public/character_edit.png)
 ![](/public/chat.png)
 
 ## 🏗️ Project Structure
