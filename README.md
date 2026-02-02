@@ -8,6 +8,9 @@ A modern AI chat platform built with the T3 Stack, featuring immersive conversat
 ![tRPC](https://img.shields.io/badge/tRPC-API-398CCB)
 ![Tailwind](https://img.shields.io/badge/Tailwind-CSS-38B2AC?logo=tailwindcss)
 
+## Live
+[website](https://ai-ah-munna.vercel.app)
+
 ## ✨ Features
 
 ### 🎭 AI Character Chat
